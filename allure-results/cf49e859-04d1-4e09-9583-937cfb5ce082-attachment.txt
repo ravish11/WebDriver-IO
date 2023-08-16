@@ -1,4 +1,0 @@
-{
-  "using": "xpath",
-  "value": "//mat-toolbar//mat-icon[normalize-space()=\"more_vert\"]"
-}

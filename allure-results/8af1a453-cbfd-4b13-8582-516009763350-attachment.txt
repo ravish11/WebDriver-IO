@@ -1,3 +1,0 @@
-{
-  "url": "https://ecs-qa.kloudship.com/"
-}

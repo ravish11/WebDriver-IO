@@ -1,4 +1,0 @@
-{
-  "using": "css selector",
-  "value": "#mat-menu-panel-0 > div > button:nth-child(6)"
-}

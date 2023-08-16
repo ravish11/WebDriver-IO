@@ -5,6 +5,7 @@ export const config = {
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
+    services: ['shared-store'],
     //
     // ==================
     // Specify Test Files
@@ -22,9 +23,8 @@ export const config = {
     // will be called from there.
     //
     specs: [
-        // './features/**/*.feature',
-        // './features/**/login.feature',
-        './features/**/package.feature'
+        './features/**/login.feature',
+        './features/**/delete.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -125,10 +125,7 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec', ['allure', {
-        outputDir: './allure-results', // Directory where Allure reports will be generated
-        disableWebdriverStepsReporting: false, // Set to true to disable WebDriver steps reporting
-      }]],
+    reporters: ['spec'],
 
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
@@ -154,7 +151,7 @@ export const config = {
         // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
-        ignoreUndefinedDefinitions: true
+        ignoreUndefinedDefinitions: false
     },
     
     //

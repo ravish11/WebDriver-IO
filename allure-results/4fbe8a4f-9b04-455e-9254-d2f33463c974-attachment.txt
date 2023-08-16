@@ -1,3 +1,0 @@
-{
-  "text": "kloudship.qa.automation@mailinator.com"
-}
