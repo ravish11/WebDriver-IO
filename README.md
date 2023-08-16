@@ -7,7 +7,7 @@ Requirements
 
 Getting Started:
 -Get clone the project 
-- From the project directory type command-    cd web-test
+- From the project directory type command-    cd WebDriver-IO
 - Install the dependencies-  npm install
 - Make sure VS code installed in system
 - Type- code .
