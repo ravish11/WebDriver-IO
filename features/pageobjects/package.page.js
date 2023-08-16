@@ -26,10 +26,28 @@ class PackagePage extends Page {
 
     }
 
+    get packageAdded(){
+        return $('aria/test');
+    }
+
+    get packageDelButton(){
+        return $('//mat-icon[normalize-space()="delete"]')
+    }
+
+    get packageDelFromPopUp(){
+        return $('//span[normalize-space()="Delete Package Type" and @class="mat-button-wrapper"]')
+    }
+
+
+// async packageDelete(){
+//    await this.packageAdded.getText()
+//    await this.packageAdded.click();
+// }
+
 
     async addPackage() {
         await this.inputName.waitForExist({ timeout: 5000 });
-        await this.inputName.setValue('hello');
+        await this.inputName.setValue('test');
         await this.inputLength.setValue(this.between(1, 21));
         await this.inputWidth.setValue(this.between(1, 21));
         await this.inputHeight.setValue(this.between(1, 21));
@@ -45,6 +63,8 @@ class PackagePage extends Page {
     open() {
         return super.open('');
     }
+
+
 }
 
 export default new PackagePage();

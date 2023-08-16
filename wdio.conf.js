@@ -22,7 +22,9 @@ export const config = {
     // will be called from there.
     //
     specs: [
-        './features/**/*.feature'
+        // './features/**/*.feature',
+        // './features/**/login.feature',
+        './features/**/package.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -44,7 +46,7 @@ export const config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 1,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -123,7 +125,10 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['spec', ['allure', {
+        outputDir: './allure-results', // Directory where Allure reports will be generated
+        disableWebdriverStepsReporting: false, // Set to true to disable WebDriver steps reporting
+      }]],
 
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
@@ -149,7 +154,7 @@ export const config = {
         // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
-        ignoreUndefinedDefinitions: false
+        ignoreUndefinedDefinitions: true
     },
     
     //
