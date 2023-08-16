@@ -6,10 +6,14 @@ Requirements
 - npm 
 
 Getting Started:
-- Get clone the project 
+-Get clone the project 
 - From the project directory type command-    cd web-test
-- Now, Install the dependencies-  npm install
-- Run e2e tests-  npm run wdio
+- Install the dependencies-  npm install
+- Make sure VS code installed in system
+- Type- code .
+- Now open terminal and run the command to Run e2e
+- Run e2e tests use command-  npm run wdio
+
  
 Reports:
 - Currently Spec report is visible in console, Webdriver supports multiple reportings like Allure, Junit etc
