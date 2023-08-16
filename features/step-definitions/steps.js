@@ -5,7 +5,7 @@ import LoginPage from '../pageobjects/login.page.js';
 import TopMenu from '../pageobjects/top.menu.js';
 import PackagePage from '../pageobjects/package.page.js';
 import HomePage from '../pageobjects/home.page.js';
-
+import { randomData } from '../utils/faker.js';
 const pages = {
     login: LoginPage,
     home: TopMenu,
@@ -17,7 +17,7 @@ Given(/^I am on the (\w+) page$/, async (page) => {
 });
 
 
-When(/^I login with valid credentials$/, async () => {
+When(/^I login with$/, async () => {
     let username = 'kloudship.qa.automation@mailinator.com'
     let password = 'Password1'
     await LoginPage.login(username, password)
@@ -38,25 +38,17 @@ When(/^I click add package icon on top menu$/, async () => {
     await TopMenu.packageBtn.click()
 });
 
-Then(/^Add new package detail opened$/, async () => {
-    await PackagePage.addPackage()
+Then(/^add new package detail$/, async () => {
+    await PackagePage.addPackage(randomData)
 });
 
-Then(/^I click on Logout$/, async () => {
+
+Then(/^i logout$/, async () => {
     await TopMenu.logout()
 });
 
-When(/^I click on added package and click delete$/, async() => {
-    const abc = await PackagePage.packageAdded.getText();
-    console.log(abc);
-	await PackagePage.packageDelete.click()
-    await PackagePage.packageDelButton.click()
+
+
+When(/^I click delete package which i added previously$/, () => {
+	return PackagePage.deletePackage(randomData);
 });
-
-
-When(/^I click on delete package type from pop up$/, async() => {
-    await PackagePage.packageDelFromPopUp.click()
-
-});
-
-

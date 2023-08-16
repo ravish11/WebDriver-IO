@@ -17,11 +17,9 @@ class TopMenu extends Page {
 
     }
     async logout(){
-    
-    await this.threedotsBtn.waitForExist({ timeout: 5000 });
-    await this.threedotsBtn.click();
-    await this.logoutBtn.click();
-    await browser.pause(3000)
+       await this.threedotsBtn.click();
+       await this.logoutBtn.click();
+       await browser.pause(3000)
     }
 
     open () {

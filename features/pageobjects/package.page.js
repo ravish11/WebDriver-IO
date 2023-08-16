@@ -25,46 +25,61 @@ class PackagePage extends Page {
     return $('//mat-icon[normalize-space()="check"]')
 
     }
-
-    get packageAdded(){
-        return $('aria/test');
-    }
-
     get packageDelButton(){
         return $('//mat-icon[normalize-space()="delete"]')
+        
     }
-
-    get packageDelFromPopUp(){
-        return $('//span[normalize-space()="Delete Package Type" and @class="mat-button-wrapper"]')
+    get packageAdded(){
+        // return $("//div[normalize-space()='test']");
+        return this._packageAdded
     }
-
-
-// async packageDelete(){
-//    await this.packageAdded.getText()
-//    await this.packageAdded.click();
-// }
-
-
-    async addPackage() {
+    set packageAdded(packagename){
+        
+        this._packageAdded=$(`//div[normalize-space()="${packagename}"]`);
+    }
+    
+    
+    
+    get packageDeleteConfirmationBtn(){
+        // return $('#mat-dialog-0 > app-alert-dialog > mat-card > div > button > span.mat-button-wrapper')
+        return $('//span[normalize-space()="Delete Package Type"]')
+    }
+    async addPackage(randomData) {
         await this.inputName.waitForExist({ timeout: 5000 });
-        await this.inputName.setValue('test');
-        await this.inputLength.setValue(this.between(1, 21));
-        await this.inputWidth.setValue(this.between(1, 21));
-        await this.inputHeight.setValue(this.between(1, 21));
+        await browser.pause(1000)
+        await this.inputName.setValue(randomData.name);
+        await this.inputLength.setValue(randomData.length);
+        await this.inputWidth.setValue(randomData.width);
+        await this.inputHeight.setValue(randomData.height);
+        await browser.pause(5000)
+        var packageName=`${randomData.name} ${randomData.length} x ${randomData.width} x ${randomData.height}`
+        await browser.sharedStore.set('packageName', packageName)
+        console.log("Before adding----",packageName)
         await this.packageSubmitBtn.click();
     }
 
-    between(min, max) {
-        return Math.floor(
-            Math.random() * (max - min) + min
-        )
+
+    async deletePackage(randomData) {
+        const value = await browser.sharedStore.get('packageName')
+        // var aaa=`//div[normalize-space()="${value}"]`;
+        this.packageAdded=value
+        await this.packageAdded.waitForExist({ timeout: 5000 });
+        await this.packageAdded.click();
+      
+        await browser.pause(1000)
+        await this.packageDelButton.waitForExist({ timeout: 5000 });
+        await this.packageDelButton.click();
+
+        await browser.pause(1000)
+        await this.packageDeleteConfirmationBtn.waitForExist({ timeout: 5000 });
+        await this.packageDeleteConfirmationBtn.click();
+        await browser.pause(1000)
+      
     }
 
     open() {
         return super.open('');
     }
-
-
 }
 
 export default new PackagePage();
